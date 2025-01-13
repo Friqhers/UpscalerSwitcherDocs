@@ -145,6 +145,6 @@ void UYourGameInstance::Init()
     Super::Init();
 
     // Apply the saved upscaling method (e.g., DLSS, FSR, or None) from the last game session
-    UUpscalerSwitcherUtils::ApplyCurrentUpscalerMethod();
+    UUpscalerSwitcherUtils::ApplySavedUpscaler();
 }
 ```
