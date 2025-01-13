@@ -6,7 +6,7 @@ The `UpscalerSwitcher` module is a plugin for Unreal Engine that allows dynamic 
 
 - Enable/Disable FSR and DLSS upscaling.
 - Switch between different upscaling methods at runtime.
-- Adjust screen percentage and quality settings for each upscaling method.
+- Adjust quality settings for each upscaling method.
 
 ## Installation
 
