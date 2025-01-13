@@ -37,11 +37,13 @@ You can enable or disable upscaling methods using the `UUpscalerSwitcherUtils` c
 
 // If another upscaler (e.g., DLSS) is currently enabled, it will be disabled before enabling FSR
 // Enable saved FSR mode 
-UUpscalerSwitcherUtils::ApplyFSR(FFSRModeInformation(Settings->GetFSRQualityMode(), Settings->GetFSRFrameGenEnabled()));
+UUpscalerSwitcherUtils::ApplyFSR(FFSRModeInformation(Settings->GetFSRQualityMode(),
+                                 Settings->GetFSRFrameGenEnabled()));
 
 // This will first disable any previously enabled upscaling method (e.g., FSR) and then enable DLSS
 // Enable saved DLSS mode
-UUpscalerSwitcherUtils::ApplyDLSS(FDLSSModeInformation(Settings->GetDLSSQualityMode(), Settings->GetDLSSOptimalScreenPercentage(), Settings->GetDLSSFrameGenEnabled()));
+UUpscalerSwitcherUtils::ApplyDLSS(FDLSSModeInformation(Settings->GetDLSSQualityMode(),
+                                    Settings->GetDLSSOptimalScreenPercentage(), Settings->GetDLSSFrameGenEnabled()));
 
 // Disable all upscaling methods (FSR, DLSS, etc.), reverting to native resolution rendering
 UUpscalerSwitcherUtils::DisableUpscaling();
