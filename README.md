@@ -122,7 +122,7 @@ To ensure that your game automatically applies the last saved upscaling method (
 
 Follow these steps:
 
-1. Open your `GameInstance` header file and define the `Init` function as follows:
+1. Open your `GameInstance` header file and define the `Constructor` and `ApplySavedUpscaler` as follows:
 
 ```h
 UCLASS()
@@ -131,20 +131,25 @@ class YOURPROJECT_API UYourGameInstance : public UGameInstance
     GENERATED_BODY()
 
 public:
-    // Override the Init function to apply the current upscaling method on game start
-    virtual void Init() override;
+    UYourGameInstance();
+
+private:
+    void ApplySavedUpscaler();
 };
 ```
 
-2. In the corresponding `GameInstance` source file, implement the `Init` function:
+2. In the corresponding `GameInstance` source file, implement the  `Constructor` and `ApplySavedUpscaler` function:
 
 ```cpp
-void UYourGameInstance::Init()
-{
-    // Call the parent class's Init function to maintain existing initialization logic
-    Super::Init();
 
+UYourGameInstance::UYourGameInstance()
+{
     // Apply the saved upscaling method (e.g., DLSS, FSR, or None) from the last game session
     UUpscalerSwitcherUtils::ApplySavedUpscaler();
+}
+
+void UYourGameInstance::ApplySavedUpscaler()
+{
+    FCoreDelegates::OnAllModuleLoadingPhasesComplete.AddUObject(this, &UYourGameInstance::ApplySavedUpscaler);
 }
 ```
