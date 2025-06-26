@@ -128,7 +128,7 @@ This way, the selected upscaling method is restored automatically and seamlessly
 
 Follow these steps:
 
-1. Open your `GameInstance` header file and define the `Constructor` and `ApplySavedUpscaler` as follows:
+1. Open your `GameInstance` header file and define the `Init` and `PostEngineInit` as follows:
 
 ```h
 UCLASS()
@@ -137,28 +137,30 @@ class YOURPROJECT_API UYourGameInstance : public UGameInstance
     GENERATED_BODY()
 
 public:
-    UYourGameInstance();
-
-private:
-    void ApplySavedUpscaler();
+    virtual void Init() override;
+protected:
+    virtual void PostEngineInit();
 };
 ```
 
-2. In the corresponding `GameInstance` source file, implement the  `Constructor` and `ApplySavedUpscaler` function:
+2. In the corresponding `GameInstance` source file, implement the  `Init` and `PostEngineInit` function:
 
 ```cpp
 
-UYourGameInstance::UYourGameInstance()
+void UYourGameInstance::Init()
 {
-    // Delay applying the upscaler until all engine modules are fully loaded
-    FCoreDelegates::OnAllModuleLoadingPhasesComplete.AddUObject(this, &UYourGameInstance::ApplySavedUpscaler);
+    FCoreDelegates::OnPostEngineInit.AddUObject(this, &UYourGameInstance::PostEngineInit);
 }
 
-void UYourGameInstance::ApplySavedUpscaler()
+void UYourGameInstance::PostEngineInit()
 {
-    if (UUpscalerGameUserSettings* Settings = UUpscalerGameUserSettings::GetUpscalerGameUserSettings();)
+    // Wait one frame
+    FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateLambda([this](float DeltaTime)
     {
-	Settings->ApplyCurrentUpscaler();
-    }
+       if (UUpscalerGameUserSettings* Settings = UUpscalerGameUserSettings::GetUpscalerGameUserSettings())
+	   Settings->ApplyCurrentUpscaler();
+       }
+        return false; // Don't repeat
+    }), 0.0f);
 }
 ```
