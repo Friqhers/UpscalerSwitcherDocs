@@ -149,6 +149,7 @@ protected:
 
 void UYourGameInstance::Init()
 {
+    Super::Init();
     FCoreDelegates::OnPostEngineInit.AddUObject(this, &UYourGameInstance::PostEngineInit);
 }
 
