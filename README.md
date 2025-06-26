@@ -118,7 +118,9 @@ Example Blueprint usage:
 
 ### Automatically Apply the Saved Upscaling Method on Game Start
 
-To ensure that your game automatically applies the last saved upscaling method (e.g., DLSS, FSR, or native resolution) upon game startup, you should override the `Init` function in your custom `GameInstance` class. This ensures the saved upscaling preferences are applied seamlessly without requiring manual input from the player.
+To ensure your game uses the player's previously selected upscaling method (e.g., DLSS, FSR, or Native resolution) when starting up, you should apply the saved preferences early in the game's lifecycle. A reliable place to do this is within your custom `GameInstance` class.
+
+This way, the selected upscaling method is restored automatically and seamlessly, without requiring any manual input from the player every time the game launches.
 
 Follow these steps:
 
@@ -144,12 +146,13 @@ private:
 
 UYourGameInstance::UYourGameInstance()
 {
-    // Apply the saved upscaling method (e.g., DLSS, FSR, or None) from the last game session
+    // Delay applying the upscaler until all engine modules are fully loaded
     UUpscalerSwitcherUtils::ApplySavedUpscaler();
 }
 
 void UYourGameInstance::ApplySavedUpscaler()
 {
+    // Call your utility function to apply the saved upscaling method (DLSS, FSR, or None)
     FCoreDelegates::OnAllModuleLoadingPhasesComplete.AddUObject(this, &UYourGameInstance::ApplySavedUpscaler);
 }
 ```
