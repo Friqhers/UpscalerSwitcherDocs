@@ -153,8 +153,8 @@ UYourGameInstance::UYourGameInstance()
 void UYourGameInstance::ApplySavedUpscaler()
 {
     if (UUpscalerGameUserSettings* Settings = UUpscalerGameUserSettings::GetUpscalerGameUserSettings();)
-	{
-		Settings->ApplyCurrentUpscaler();
-	}
+    {
+	Settings->ApplyCurrentUpscaler();
+    }
 }
 ```
