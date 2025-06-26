@@ -2,13 +2,13 @@
 
 The `UpscalerSwitcher` is a plugin for Unreal Engine that allows dynamic switching between different upscaling methods such as FSR and DLSS.
 
-## Features
+## 🔧Features
 
 - Enable/Disable FSR and DLSS upscaling.
 - Switch between different upscaling methods at runtime.
 - Adjust quality settings for each upscaling method.
 
-## Installation
+## 📦Installation
 
 1. Clone or download the `UpscalerSwitcher` plugin into the `Plugins` directory of your Unreal Engine project.
 2. Add the following line to your project's `.uproject` file to include the plugin:
@@ -24,7 +24,11 @@ The `UpscalerSwitcher` is a plugin for Unreal Engine that allows dynamic switchi
 
 3. Rebuild your project to include the plugin.
 4. Set your GameUserSettings class to UpscalerGameUserSettings in Project Settings->Engine-General Settings->GameUserSettingsClass.
-5. Download DLSS and FSR plugins from their respective site and include them to your project.
+5. To use DLSS and FSR features, make sure to install their respective plugins:
+    🔷 DLSS Plugin:
+    https://developer.nvidia.com/rtx/dlss
+    🔶 FSR Plugin:
+    https://gpuopen.com/learn/ue-fsr3/
 
 ## Usage
 
