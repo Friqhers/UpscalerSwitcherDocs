@@ -159,7 +159,7 @@ void UYourGameInstance::PostEngineInit()
     FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateLambda([this](float DeltaTime)
     {
        if (UUpscalerGameUserSettings* Settings = UUpscalerGameUserSettings::GetUpscalerGameUserSettings())
-	   Settings->ApplySettings();
+	   Settings->ApplySettings(true);
        }
         return false; // Don't repeat
     }), 0.0f);
