@@ -147,12 +147,14 @@ private:
 UYourGameInstance::UYourGameInstance()
 {
     // Delay applying the upscaler until all engine modules are fully loaded
-    UUpscalerSwitcherUtils::ApplySavedUpscaler();
+    FCoreDelegates::OnAllModuleLoadingPhasesComplete.AddUObject(this, &UYourGameInstance::ApplySavedUpscaler);
 }
 
 void UYourGameInstance::ApplySavedUpscaler()
 {
-    // Call your utility function to apply the saved upscaling method (DLSS, FSR, or None)
-    FCoreDelegates::OnAllModuleLoadingPhasesComplete.AddUObject(this, &UYourGameInstance::ApplySavedUpscaler);
+    if (UUpscalerGameUserSettings* Settings = UUpscalerGameUserSettings::GetUpscalerGameUserSettings();)
+	{
+		Settings->ApplyCurrentUpscaler();
+	}
 }
 ```
