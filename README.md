@@ -28,7 +28,7 @@ The `UpscalerSwitcher` is a plugin for Unreal Engine that allows dynamic switchi
     🔷 DLSS Plugin:
     https://developer.nvidia.com/rtx/dlss
     🔶 FSR Plugin:
-    https://gpuopen.com/learn/ue-fsr3/](https://gpuopen.com/amd-fsr-upscaling/
+    https://gpuopen.com/amd-fsr-upscaling/
 
 ## Usage
 
