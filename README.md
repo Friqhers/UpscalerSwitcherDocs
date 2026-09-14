@@ -55,7 +55,7 @@ player's choice across sessions, without taking a compile-time dependency on eit
 5. Install the vendor plugins you want to support. Neither is required.
     - 🔷 DLSS: <https://developer.nvidia.com/rtx/dlss> — enable the `DLSS`, `Streamline`,
       `StreamlineCore` and `StreamlineDLSSG` plugins. The last one is what provides Frame Generation.
-    - 🔶 FSR: <https://gpuopen.com/learn/unreal-engine-fidelityfx-super-resolution/> — enable the `FSR`
+    - 🔶 FSR: <https://gpuopen.com/learn/ue-fsr/> — enable the `FSR`
       plugin (named `FSR3` on the 3.x generation).
 6. If you call NVIDIA's Blueprint library from your own C++, add `DLSSBlueprint` to your `Build.cs`:
 
